@@ -34,3 +34,22 @@
           console.log(data);
         })
       }
+
+### 6-3. Обработка ошибок в Fetch
+
+      const getData = async(url) => {
+        const res = await fetch(url);
+
+        if(!res.ok) {
+          throw new Error (`Could not fetch${url}` + `received ${res.status}`)
+        }
+
+        const data = res.json();
+        return data;
+      }
+
+      getData('http://swapi.dev/api/people/1') {
+        .then((data) => {
+          console.log(data);
+        })
+      }
