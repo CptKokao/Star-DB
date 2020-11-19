@@ -112,3 +112,20 @@
 4. Обрабатывайте состояние "загрузка" и "ошибка"
 5. Разделяйте ответственность компонентов: Логику и Рендеринг
                 
+## Раздел 7:Жизненный цикл компонентов
+
+### 7-2. Методы жизненного цикла
+
+> MOUNTING
+constructor() => render() => **componentDidMount()**
+
+> UPDATES
+New Props
+              => render() => **componentDidUpdate()**
+satState()
+
+> UNMOUNTING
+**componentWillUnmount()**
+
+> ERROR
+**componenDidCatch()**
