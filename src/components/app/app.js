@@ -10,13 +10,12 @@ import './app.css';
 export default class App extends Component {
 
   state = {
-    idItemSelected: null
+    personId: 1
   }
 
   personSelected = (id) => {
-    console.log(id);
     this.setState({
-      idItemSelected: id
+      personId: id
     })
   }
 
@@ -31,7 +30,7 @@ export default class App extends Component {
             <ItemList onPersonSelected = {this.personSelected}/>
           </div>
           <div className="col-md-6">
-            <PersonDetails />
+            <PersonDetails personId = {this.state.personId}/>
           </div>
         </div>
       </div>

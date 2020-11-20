@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
-import ErrorIndicator from '../error-indicator';
 
 import './item-list.css';
 
 export default class ItemList extends Component {
 
   state = {
-    peopleList: null,
+    peopleList: null
   }
 
   swapiServer = new SwapiService()
@@ -20,8 +19,7 @@ export default class ItemList extends Component {
   // После получения данных, меняет state
   _onLoadedPeople = (peopleList) => {
     this.setState({
-      peopleList,
-      loading: false
+      peopleList
     });
   }
 
@@ -32,10 +30,6 @@ export default class ItemList extends Component {
       .then(this._onLoadedPeople)
   }
 
-  onClickItem = () => {
-    console.log('click');
-  }
-  
   rendetItems = (items) => {
 
     return items.map((el) => {
