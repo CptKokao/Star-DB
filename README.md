@@ -117,15 +117,19 @@
 ### 7-2. Методы жизненного цикла
 
 > MOUNTING
+---
 constructor() => render() => **componentDidMount()**
 
 > UPDATES
+---
 New Props
               => render() => **componentDidUpdate()**
 satState()
 
 > UNMOUNTING
+---
 **componentWillUnmount()**
 
 > ERROR
+---
 **componenDidCatch()**
