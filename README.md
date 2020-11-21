@@ -122,9 +122,7 @@ constructor() => render() => **componentDidMount()**
 
 > UPDATES
 
-New Props
-              => render() => **componentDidUpdate()**
-satState()
+New Props или satState() => render() => **componentDidUpdate()**
 
 > UNMOUNTING
 
@@ -133,3 +131,7 @@ satState()
 > ERROR
 
 **componenDidCatch()**
+
+- Отлавливает ошибки, которые произошли в методах жизненного цикла ниже по иерархии
+- принцип похож на try/catch - ошибки отлавливает ближний блок
+- НЕ обрабатываются ошибки в event listener'ах и в асинхронном коде(запросы к серверу и т.п.)
