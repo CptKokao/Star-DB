@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
 
 import './item-list.css';
@@ -9,8 +8,6 @@ export default class ItemList extends Component {
   state = {
     peopleList: null
   }
-
-  swapiServer = new SwapiService()
 
   componentDidMount() {
     this.getPeople();
@@ -25,13 +22,14 @@ export default class ItemList extends Component {
 
   // Получает данные от сервера
   getPeople = () => {
-    this.swapiServer
-      .getAllPeople()
+    const {getData} = this.props;
+
+    getData()
       .then(this._onLoadedPeople)
   }
 
   rendetItems = (items) => {
-
+    
     return items.map((el) => {
       return (
         <li className="list-group-item"
