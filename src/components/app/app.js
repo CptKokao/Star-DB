@@ -13,6 +13,7 @@ export default class App extends Component {
 
   swapiService = new SwapiService()
 
+
   render() {
     return (
       <div>
@@ -25,10 +26,12 @@ export default class App extends Component {
           <div className="col-md-6">
             <ItemList
               onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllPlanets} />
+              getData={this.swapiService.getAllPlanets}
+              renderItem = {({name, diameter, population}) => `${name} -${diameter} - ${population}`}
+            />
           </div>
           <div className="col-md-6">
-            {/* <PersonDetails personId={this.state.selectedPerson} /> */}
+            <PersonDetails />
           </div>
         </div>
 
@@ -36,12 +39,16 @@ export default class App extends Component {
           <div className="col-md-6">
             <ItemList
               onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllStarships} />
+              getData={this.swapiService.getAllStarships}
+              renderItem = {({name, length, passengers}) => `${name} - ${length} - ${passengers}`}
+            />
           </div>
           <div className="col-md-6">
-            {/* <PersonDetails personId={this.state.selectedPerson} /> */}
+            <PersonDetails />
           </div>
         </div>
+
+
 
       </div>
     );
