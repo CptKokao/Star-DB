@@ -6,12 +6,25 @@ import SwapiService from '../../services/swapi-service';
 
 import './people-page.css'
 
+const Row = ({left, right}) => {
+  return (
+    <div className="row mb-2 mt-2">
+      <div className="col-md-6">
+        {left}
+      </div>
+      <div className="col-md-6">
+        {right}
+      </div>
+    </div>
+  );
+}
+
 export default class PeoplePage extends Component {
 
   swapiService = new SwapiService()
 
   state = {
-    personId: 2,
+    personId: 1,
     hasError: false
   }
 
@@ -33,22 +46,22 @@ export default class PeoplePage extends Component {
   render() {
     
     if (this.state.hasError) {
-      console.log('test');
       return <ErrorIndicator/>
     }
 
+    const itemList = (
+      <ItemList onPersonSelected = {this.personSelected}
+                getData = {this.swapiService.getAllPeople}
+                renderItem = {({name, gender, birthYear}) => `${name} - ${gender} - ${birthYear}`}
+      />
+    );
+
+    const personDetails = (
+      <PersonDetails personId = {this.state.personId}/>
+    );
+
     return (
-      <div className="row mb-2 mt-2">
-        <div className="col-md-6">
-          <ItemList onPersonSelected = {this.personSelected}
-                    getData = {this.swapiService.getAllPeople}
-                    renderItem = {({name, gender, birthYear}) => `${name} - ${gender} - ${birthYear}`}
-          />
-        </div>
-        <div className="col-md-6">
-          <PersonDetails personId = {this.state.personId}/>
-        </div>
-      </div>
+      <Row left = {itemList} right = {personDetails}/>
     );
   }
 }
