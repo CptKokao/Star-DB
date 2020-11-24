@@ -26,9 +26,9 @@ export default class App extends Component {
           <div className="col-md-6">
             <ItemList
               onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllPlanets}
-              renderItem = {({name, diameter, population}) => `${name} -${diameter} - ${population}`}
-            />
+              getData={this.swapiService.getAllPlanets}>
+                {(item) => `${item.name} - ${item.birthdiameterYear} - ${item.population}`}
+            </ItemList>
           </div>
           <div className="col-md-6">
             <PersonDetails />
@@ -39,9 +39,9 @@ export default class App extends Component {
           <div className="col-md-6">
             <ItemList
               onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllStarships}
-              renderItem = {({name, length, passengers}) => `${name} - ${length} - ${passengers}`}
-            />
+              getData={this.swapiService.getAllStarships}>
+                {(item) => `${item.name} - ${item.length} - ${item.passengers}`}
+            </ItemList>
           </div>
           <div className="col-md-6">
             <PersonDetails />

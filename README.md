@@ -142,12 +142,26 @@ New Props или satState() => render() => **componentDidUpdate()**
 
 - Паттерн React - в компонент передается функция, которая рендерит часть компонента (или весь компонент)
 
-    <CardComponent
-      renderBody = {() => <p>Hello</p>}
-    />
+```javascript  
+    <CardComponent renderBody = {() => <p>Hello</p>}/>
+```
 
 ### 8-4. Свойства-элементы
 
 - В качестве значения свойства можно передавать React элемент. Так можно создавать элементы-"контейнеры"
 
+```javascript  
     <CardComponent title={<h1>Hi</h1>}/>
+```
+
+### 8-5. Children
+
+- Компоненту можно передавать одно из свойтсв, поместив его в тело элемента.
+- Это свойство доступно через this.props.children.
+- Поддерживает любые типы данныхЖ элементы, функции, объекты и др.
+
+```javascript  
+    <ErrorBoundry>
+      <Row left = {itemList} right = {personDetails}/>
+    </ErrorBoundry>
+```
