@@ -12,6 +12,7 @@
 
 ### 6-2. Работа Fetch
 
+```javascript  
     fetch()
       .then((resp) => {
         return res.json();
@@ -33,9 +34,11 @@
         console.log(data);
       })
     }
+```
 
 ### 6-3. Обработка ошибок в Fetch
 
+```javascript  
     const getData = async(url) => {
       const res = await fetch(url);
 
@@ -52,9 +55,11 @@
         console.log(data);
       })
     }
+```
 
 ### 6-4. Создаём класс клиент для API
 
+```javascript  
     export default class SwapiService {
 
       _baseUrl = 'http://swapi.dev/api/';
@@ -103,6 +108,7 @@
     swapi.getStarship(9).then((data) => {
         console.log(data);
       });
+```
 
 ### 6-11. Работа с API - выводы
 

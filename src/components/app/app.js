@@ -4,7 +4,9 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import PeoplePage from '../people-page';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import ItemDetails from '../item-details';
+import ErrorBoundry from '../error-boundry'
+import Row from '../row'
 import SwapiService from '../../services/swapi-service';
 
 import './app.css';
@@ -12,45 +14,42 @@ import './app.css';
 export default class App extends Component {
 
   swapiService = new SwapiService()
-
-
+  
   render() {
+
+    const {getPerson, 
+           getStarship, 
+           getPersonImage, 
+           getStarshipImage } = this.swapiService
+
+    const personDetails = (
+      <ItemDetails 
+        itemId = {5}
+        getData = {getPerson} 
+        getImageUrl = {getPersonImage} 
+      />
+    )
+
+    const starshipDetails = (
+      <ItemDetails 
+        itemId = {11}
+        getData = {getStarship}
+        getImageUrl = {getStarshipImage} 
+      />
+    )
+    
     return (
-      <div>
+      <ErrorBoundry>
         <Header />
-        <RandomPlanet />
+        {/* <RandomPlanet />
+        <PeoplePage/> */}
 
-        <PeoplePage/>
+        <Row 
+          left = {personDetails}
+          right = {starshipDetails}
+        />
 
-        <div className="row mb-2 mt-2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllPlanets}>
-                {(item) => `${item.name} - ${item.birthdiameterYear} - ${item.population}`}
-            </ItemList>
-          </div>
-          <div className="col-md-6">
-            <PersonDetails />
-          </div>
-        </div>
-
-        <div className="row mb-2 mt-2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllStarships}>
-                {(item) => `${item.name} - ${item.length} - ${item.passengers}`}
-            </ItemList>
-          </div>
-          <div className="col-md-6">
-            <PersonDetails />
-          </div>
-        </div>
-
-
-
-      </div>
+      </ErrorBoundry>
     );
   }
   
