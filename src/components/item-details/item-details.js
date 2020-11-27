@@ -31,18 +31,20 @@ export default class ItemDetails extends Component {
 
   updateItem = () => {
     const {getData, getImageUrl, itemId} = this.props;
-
+    
     if(!itemId) {
       return;
     }
 
     getData(itemId)
       .then((item) => {
+        console.log(item);
         this.setState({
           item,
           image: getImageUrl(item)
         })
       })
+    
   }
 
   render() {
@@ -51,7 +53,7 @@ export default class ItemDetails extends Component {
     }
 
     const {image, item} = this.state;
-    const {name, gender, birthYear, eyeColor} = item;
+    const {name} = item;
 
     return (
       <div className="item-details card">
@@ -61,18 +63,11 @@ export default class ItemDetails extends Component {
         <div className="card-body">
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <span className="term">Gender</span>
-              <span>{gender}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Birth Year</span>
-              <span>{birthYear}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Eye Color</span>
-              <span>{eyeColor}</span>
-            </li>
+            {
+              React.Children.map(this.props.children, (child) => {
+                return React.cloneElement(child, {item})
+              })
+            }
           </ul>
           <ErrorButton />
         </div>
