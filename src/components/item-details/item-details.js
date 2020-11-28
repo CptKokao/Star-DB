@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner'
 import ErrorButton from '../error-button'
 
@@ -11,8 +10,6 @@ export default class ItemDetails extends Component {
     item: null,
     image: null
   }
-
-  swapiService = new SwapiService();
 
   componentDidMount() {
     this.updateItem();
@@ -31,6 +28,7 @@ export default class ItemDetails extends Component {
 
   updateItem = () => {
     const {getData, getImageUrl, itemId} = this.props;
+    console.log(this.props);
     
     if(!itemId) {
       return;
@@ -38,7 +36,6 @@ export default class ItemDetails extends Component {
 
     getData(itemId)
       .then((item) => {
-        console.log(item);
         this.setState({
           item,
           image: getImageUrl(item)

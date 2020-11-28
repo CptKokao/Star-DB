@@ -63,8 +63,8 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <Header />
-        {/* <RandomPlanet />
-        <PeoplePage/> */}
+        <RandomPlanet />
+        <PeoplePage/>
 
         <Row 
           left = {personDetails}
